@@ -35,15 +35,15 @@ A secure chat system utilizing a standardized protocol (WebSockets). This applic
       {
           "server_name": "s3",
           "admin": {
-              "client1@server3": "admin1",
-              "client2@server3": "admin2",
-              "client3@server3": "admin3",
-              "client4@server3": "admin4"
+              "client1@s3": "admin1",
+              "client2@s3": "admin2",
+              "client3@s3": "admin3",
+              "client4@s3": "admin4"
           },
           "mailing_address": {
-              "server8": "10.13.97.12:5555",
-              "server4": "10.13.101.145:5555",
-              "server1": "10.13.84.131:5555"
+              "s8": "10.13.97.12:5555",
+              "s4": "10.13.101.145:5555",
+              "s1": "10.13.84.131:5555"
           }
       }
       ```
