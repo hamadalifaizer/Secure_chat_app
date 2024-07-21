@@ -1,4 +1,0 @@
-PySimpleGUI==4.56.0
-cryptography==3.4.7
-psutil==5.8.0
-websockets==8.1
