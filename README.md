@@ -92,5 +92,7 @@ A secure chat system utilizing a standardized protocol (WebSockets). This applic
 - **Sockets for Intra-Server Communication:** Within the server, sockets are used for communication between clients and the server. This allows for real-time message delivery and user presence updates.
 
 ## Authors
-
-
+Hamad Ali Faizer 
+Maxwell Pratama Kusuma Wirawan  
+Abdulkareem Okadigbo 
+Wei Kit Tan 
