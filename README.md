@@ -17,8 +17,8 @@ A secure chat system utilizing a standardized protocol (WebSockets). This applic
 
 1. **Clone the Repository:**
     ```bash
-    git clone https://github.com/yourusername/chat-app.git
-    cd chat-app
+    git clone https://github.com/hamadalifaizer/Secure_chat_app.git
+    cd Secure_chat_app
     ```
 
 2. **Install Dependencies:**
