@@ -9,7 +9,7 @@ import base64
 import os
 
 def load_config():
-    file_path = os.path.join(os.getcwd(), 'chatapp', 'setup.json')
+    file_path = os.path.join(os.getcwd(), 'client_setup.json')
     try:
         with open(file_path, 'r') as file:
             config = json.load(file)

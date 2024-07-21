@@ -18,7 +18,7 @@ def get_wlan_ip():
         return None
     
 def load_config():
-    file_path = os.path.join(os.getcwd(), 'chatapp', 'setup.json')
+    file_path = os.path.join(os.getcwd(), 'setup.json')
     try:
         with open(file_path, 'r') as file:
             config = json.load(file)
