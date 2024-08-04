@@ -4,7 +4,7 @@
 ## MALICIOUS FILE INTENTED FOR EDUCATIONAL PURPOSES
 
 ## Description
-A secure chat system utilizing a standardized protocol (WebSockets). This application ensures secure and private communication between users with features like public and private messaging, user authentication, and message encryption.
+A secure chat system utilizing a standardized protocol (WebSockets). This application ensures secure and private communication between users with features like public and private messaging, user authentication, and message encryption. The application uses python gui making it easier to use. 
 
 ## Features
 - **Public and Private Messaging:** Users can send messages to the public chat or privately to specific users.
@@ -30,7 +30,7 @@ A secure chat system utilizing a standardized protocol (WebSockets). This applic
 
 3. **Configuration:**
     - **Server Setup:**
-      Edit the `setup.json` file to include your server name, admin credentials, and mailing addresses. This file is used by the server to manage connections and communications.
+      Edit the `setup.json` file to include your server name, admin credentials, and mailing addresses. This file is used by the server to manage connections and communications. 
       ```json
       {
           "server_name": "s3",
@@ -49,7 +49,7 @@ A secure chat system utilizing a standardized protocol (WebSockets). This applic
       ```
       - `server_name`: The name of your server.
       - `admin`: A dictionary mapping usernames to their respective passwords.
-      - `mailing_address`: Addresses of other servers for inter-server communication.
+      - `mailing_address`: Addresses of other servers for intra-server communication.
 
     - **Client Setup:**
       Edit the `client_setup.json` file to specify the server IP address. This file is used by the client to connect to the server.
@@ -75,10 +75,12 @@ A secure chat system utilizing a standardized protocol (WebSockets). This applic
 1. **Start the Server:**
     - Ensure the server is configured correctly and run `server.py`.
     - The server will start listening on the specified IP and port.
+    - sometimes the server.py may not be able to find the setup.json file so copy setup.json to c:/users/"your_username"
 
 2. **Start the Client:**
     - Run `client.py`.
-    - Enter your username and password to authenticate.
+    - you will be greeted with a login page. 
+    - Enter your username and password to authenticate. the login details are contained in the setup.json file.
 
 3. **Public Chat:**
     - Send messages to the public chat visible to all users.
