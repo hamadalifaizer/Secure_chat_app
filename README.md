@@ -123,6 +123,30 @@ A secure chat system utilizing a standardized protocol (WebSockets). This applic
 ## Error Handling:
 
     Robust Error Handling: The implementation includes error handling to manage potential issues such as connection errors, JSON decoding errors, and missing keys. This ensures that the application can handle unexpected situations gracefully and continue running.
+
+### Additional Design Choices
+## User Authentication:
+        Simple Registration and Login: The application supports user registration and login, storing credentials securely. This feature ensures that only authorized users can access the chat, enhancing security.
+
+## Presence and Status:
+        Online Status: The application maintains a list of online users and their statuses. This feature allows users to see who is available for chat, improving the user experience.
+
+## Interoperability:
+        Configurable IP and Ports: The server and client configurations allow for easy modification of IP addresses and ports, facilitating deployment in different environments and making the application flexible.
+
+## Scalability:
+        Group Chats: The application supports group chats by allowing users to connect to multiple users simultaneously. This design choice enables scalable communication among multiple participants.
+
+## Extensibility:
+        Modular Design: The modular design of the codebase makes it easy to extend the application with new features, such as additional encryption methods or new UI components, without affecting the existing functionality.
+
+### setup Demo
+https://github.com/user-attachments/assets/3e9d7ec7-c10e-4362-aaed-964e0c9b003c
+
+### Client to Client chat (inter server)
+https://github.com/user-attachments/assets/9781dbf8-7a5f-4467-91d4-3cad84de3408
+
+
 ## Authors
 - Hamad Ali Faizer 
 - Maxwell Pratama Kusuma Wirawan  
