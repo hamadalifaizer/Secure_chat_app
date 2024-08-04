@@ -88,11 +88,41 @@ A secure chat system utilizing a standardized protocol (WebSockets). This applic
 4. **Private Chat:**
     - Select a user from the list to start a private chat.
 
-## Communication Protocols
+### Design choices
+## Network Protocols:
 
-- **WebSockets for Inter-Server Communication:** The servers use WebSockets to communicate with each other. This allows for asynchronous communication and ensures that messages can be relayed between different servers efficiently.
-- **Sockets for Intra-Server Communication:** Within the server, sockets are used for communication between clients and the server. This allows for real-time message delivery and user presence updates.
+    WebSockets: WebSockets were chosen for inter-server communication due to their full-duplex communication capabilities over a single TCP connection, enabling real-time, low-latency interactions.
+    Sockets: Sockets were used for intra-server communication between clients and the server, providing a straightforward way to manage connections and data transfer in a chat application.
 
+## Cryptography:
+
+    RSA Encryption: RSA was used for encrypting messages to ensure end-to-end security. This choice ensures that messages are only readable by the intended recipient, protecting the confidentiality of the communication.
+    Cryptography Library: The cryptography library in Python provides robust cryptographic algorithms and is well-maintained, making it a reliable choice for implementing secure communication.
+
+## Graphical User Interface:
+
+    PySimpleGUI: PySimpleGUI was chosen to create the user interface for the chat application. It simplifies the process of designing a GUI and allows for rapid development and testing of the application.
+
+## Project Structure:
+
+    Separation of Concerns: The project is divided into separate files for the server, client, and configuration. This modular approach enhances maintainability and makes it easier to debug and extend the application.
+
+## Configuration Files:
+
+    JSON for Configuration: JSON was chosen for configuration files (setup.json and client_setup.json) due to its simplicity and ease of use. JSON files are human-readable and can be easily parsed in Python.
+
+## File Transfer:
+
+    Base64 Encoding: Files are encoded using Base64 before being sent over the network. This approach ensures that binary files can be safely transmitted as text, avoiding issues with special characters in the file data.
+
+## Concurrency:
+
+    Threading: The server uses threading to handle multiple client connections simultaneously. This choice ensures that the server can manage multiple active connections without blocking, providing a responsive user experience.
+    Asyncio: Asynchronous programming with asyncio is used to handle WebSocket connections and background tasks. This approach allows the server to manage multiple tasks concurrently without being blocked by slow operations.
+
+## Error Handling:
+
+    Robust Error Handling: The implementation includes error handling to manage potential issues such as connection errors, JSON decoding errors, and missing keys. This ensures that the application can handle unexpected situations gracefully and continue running.
 ## Authors
 - Hamad Ali Faizer 
 - Maxwell Pratama Kusuma Wirawan  
