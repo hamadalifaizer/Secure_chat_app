@@ -49,7 +49,7 @@ A secure chat system utilizing a standardized protocol (WebSockets). This applic
       ```
       - `server_name`: The name of your server.
       - `admin`: A dictionary mapping usernames to their respective passwords.
-      - `mailing_address`: Addresses of other servers for intra-server communication.
+      - `mailing_address`: Addresses of other servers for inter-server communication.
 
     - **Client Setup:**
       Edit the `client_setup.json` file to specify the server IP address. This file is used by the client to connect to the server.
@@ -143,9 +143,39 @@ A secure chat system utilizing a standardized protocol (WebSockets). This applic
 ### setup Demo
 https://github.com/user-attachments/assets/3e9d7ec7-c10e-4362-aaed-964e0c9b003c
 
-### Client to Client chat (inter server)
+### Client to Client chat (intra server)
 https://github.com/user-attachments/assets/9781dbf8-7a5f-4467-91d4-3cad84de3408
 
+### server to server (inter server)
+![inter_server](https://github.com/user-attachments/assets/26fbb02f-a74e-43a7-a21b-84cd705da795)
+
+### Architecture
+   +----------------+                 +----------------+                +----------------+
+   |                |                 |                |                |                |
+   |  Client A      |<--(Socket)----->|   Server 1     |<--(WebSocket)->|   Server 2     |
+   |  (PySimpleGUI) |                 |  (Threading)   |                |  (Threading)   |
+   |                |                 |                |                |                |
+   +----------------+                 +----------------+                +----------------+
+          |                                 |                                 |
+          |                                 |                                 |
+          |                                 |                                 |
+          |                                 |                                 |
+   +----------------+                 +----------------+                +----------------+
+   |                |                 |                |                |                |
+   |  Client B      |<--(Socket)----->|   Message      |<--(WebSocket)->|   Message      |
+   |  (PySimpleGUI) |                 |   Handler      |                |   Handler      |
+   |                |                 |                |                |                |
+   +----------------+                 +----------------+                +----------------+
+          |                                 |                                 |
+          |                                 |                                 |
+          |                                 |                                 |
+          |                                 |                                 |
+   +----------------+                 +----------------+                +----------------+
+   |                |                 |                |                |                |
+   |  Encryption    |<--(RSA)-------->|  Encryption    |<--(RSA)------->|  Encryption    |
+   |  (Client Side) |                 |  (Server Side) |                |  (Server Side) |
+   |                |                 |                |                |                |
+   +----------------+                 +----------------+                +----------------+
 
 ## Authors
 - Hamad Ali Faizer 
