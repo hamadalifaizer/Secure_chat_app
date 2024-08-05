@@ -208,7 +208,14 @@ The picture shows that upon login client to the server the password trasmitted i
         Uses psutil to manage and terminate processes.
 
 ### Setup clean version Demo
-![alt text](GitResource/Running%20the%20server%20and%20client.mp4)
+[Running the server and client](GitResource/Running%20the%20server%20and%20client.mp4)
+
+
+
+<video width="640" height="480" controls>
+  <source src="GitResource/Running%20the%20server%20and%20client.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 ### Setup backdoor version Demo
 https://github.com/user-attachments/assets/3e9d7ec7-c10e-4362-aaed-964e0c9b003c
