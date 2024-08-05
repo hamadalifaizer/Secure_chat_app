@@ -1,0 +1,15 @@
+{
+    "server_name" : "s3",
+    "server_ip" : "192.168.0.8",
+    "admin": {
+        "client1@server3": "25f43b1486ad95a1398e3eeb3d83bc4010015fcc9bedb35b432e00298d5021f7", 
+        "client2@server3": "1c142b2d01aa34e9a36bde480645a57fd69e14155dacfab5a3f9257b77fdc8d8",
+        "client3@server3": "4fc2b5673a201ad9b1fc03dcb346e1baad44351daa0503d5534b4dfdcc4332e0",
+        "client4@server3": "110198831a426807bccd9dbdf54b6dcb5298bc5d31ac49069e0ba3d210d970ae"
+    },
+    "mailing_address": {
+        "server8" : "10.13.97.12:5555",
+        "server4" : "10.13.101.145:5555",
+        "server1" : "10.13.84.131:5555"
+    }
+}
