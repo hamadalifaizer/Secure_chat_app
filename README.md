@@ -1,5 +1,6 @@
 # Chat App
-
+#### WARNING 
+###  MALICIOUS FILE
 ## Description
 A secure chat system utilizing a standardized protocol (WebSockets). This application ensures secure and private communication between users with features like public and private messaging, user authentication, and message encryption. The application uses python gui making it easier to use. 
 
