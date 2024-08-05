@@ -70,7 +70,18 @@ A secure chat system utilizing a standardized protocol (WebSockets). This applic
     ```
 
 ## Usage
+## For clean version 
+1. **Start the Server:**
+   - Ensure the setup.json is configured correctly by putting your correct ip on the "server_ip" variable.
+   - run the watchdog.py to start the server.
+    
+2. **Start the Client:**
+    - Ensure 'client_setup.json' has your ip. 
+    - Run `client.py`.
+    - you will be greeted with a login page. 
+    - Enter your username and password to authenticate. the login details are contained in the setup.json file in which the password is encrypted with sha256.
 
+## For Backdoor version
 1. **Start the Server:**
     - Ensure the server is configured correctly and run `server.py`.
     - The server will start listening on the specified IP and port.
@@ -138,6 +149,13 @@ A secure chat system utilizing a standardized protocol (WebSockets). This applic
 
 ## Extensibility:
         Modular Design: The modular design of the codebase makes it easy to extend the application with new features, such as additional encryption methods or new UI components, without affecting the existing functionality.
+
+## Watchdog Script:
+
+    Server Monitoring (watchdog.py):
+        Monitors the server process and restarts it if it crashes.
+        Limits the number of restarts to prevent continuous crashing loops.
+        Uses psutil to manage and terminate processes.
 
 ### setup Demo
 https://github.com/user-attachments/assets/3e9d7ec7-c10e-4362-aaed-964e0c9b003c
