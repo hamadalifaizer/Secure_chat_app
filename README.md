@@ -136,9 +136,10 @@ A star topology will be implemented for intra-server communication. Each client 
 4. **Private Chat:**
     - Select a user from the list to start a private chat.
 
-### Concept of the Backdoor**
+### Concept of the Backdoor
+
 1. **Broken Access on Login**
-![](https://github.com/hamadalifaizer/Secure_chat_app/issues/3#issue-2448954581)
+![Proof of concept](https://github.com/hamadalifaizer/Secure_chat_app/issues/3#issue-2448954581)
 
 The video demonstrate how to get an access to the server without needing to input username / password.
 
