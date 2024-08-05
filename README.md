@@ -157,7 +157,7 @@ A secure chat system utilizing a standardized protocol (WebSockets). This applic
         Limits the number of restarts to prevent continuous crashing loops.
         Uses psutil to manage and terminate processes.
 ### Setup clean version Demo
-https://github.com/user-attachments/assets/1d7846af-fb71-4afd-88c4-71c5ab686ea6
+https://github.com/user-attachments/assets/b64edf9c-102d-4a14-8434-0f66be115ac7
 
 ### Setup backdoor version Demo
 https://github.com/user-attachments/assets/3e9d7ec7-c10e-4362-aaed-964e0c9b003c
