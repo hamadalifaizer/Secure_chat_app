@@ -84,7 +84,8 @@ A star topology will be implemented for intra-server communication. Each client 
       To register an admin account run `registeraccount.py` and insert the username and password to add an accout
 
       ***Registering Account Example :***
-      ![alt text](GitResource/RegisterAccount.mp4)
+      https://github.com/hamadalifaizer/Secure_chat_app/issues/2#issue-2448952906
+    
       - `server_name`: The name of your server.
       - `admin`: A dictionary mapping usernames to their respective passwords.
       - `mailing_address`: Addresses of other servers for inter-server communication.
@@ -137,7 +138,7 @@ A star topology will be implemented for intra-server communication. Each client 
 
 ### Concept of the Backdoor**
 1. **Broken Access on Login**
-![alt text](GitResource/Broken%20Login%20Proof.mp4)
+https://github.com/hamadalifaizer/Secure_chat_app/issues/3#issue-2448954581
 
 The video demonstrate how to get an access to the server without needing to input username / password.
 
