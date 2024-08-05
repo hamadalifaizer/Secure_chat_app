@@ -3,7 +3,7 @@
 ## THIS CHAT APP CONTAINS BACKDOORS
 
 ## Description
-A secure chat system utilizing a standardized protocol (WebSockets). This application ensures secure and private communication between users with features like public and private messaging, user authentication, and message encryption. The application uses python gui making it easier to use. 
+A secure chat system utilizing a standardized protocol (WebSockets). This application ensures secure and private communication between users with features like public and private messaging, user authentication, and message encryption. The architecture of the Chat App is designed to ensure secure, real-time communication between multiple clients and servers. The design includes layers for user interface, communication, encryption, and configuration management. The application uses python gui making it easier to use.
 
 ## Features
 - **Public and Private Messaging:** Users can send messages to the public chat or privately to specific users.
