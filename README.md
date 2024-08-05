@@ -147,32 +147,32 @@ https://github.com/user-attachments/assets/9781dbf8-7a5f-4467-91d4-3cad84de3408
 ![inter_server](https://github.com/user-attachments/assets/26fbb02f-a74e-43a7-a21b-84cd705da795)
 
 ### Architecture
-   +----------------+                 +----------------+                +----------------+
-   |                |                 |                |                |                |
-   |  Client A      |<--(Socket)----->|   Server 1     |<--(WebSocket)->|   Server 2     |
-   |  (PySimpleGUI) |                 |  (Threading)   |                |  (Threading)   |
-   |                |                 |                |                |                |
-   +----------------+                 +----------------+                +----------------+
-          |                                 |                                 |
-          |                                 |                                 |
-          |                                 |                                 |
-          |                                 |                                 |
-   +----------------+                 +----------------+                +----------------+
-   |                |                 |                |                |                |
-   |  Client B      |<--(Socket)----->|   Message      |<--(WebSocket)->|   Message      |
-   |  (PySimpleGUI) |                 |   Handler      |                |   Handler      |
-   |                |                 |                |                |                |
-   +----------------+                 +----------------+                +----------------+
-          |                                 |                                 |
-          |                                 |                                 |
-          |                                 |                                 |
-          |                                 |                                 |
-   +----------------+                 +----------------+                +----------------+
-   |                |                 |                |                |                |
-   |  Encryption    |<--(RSA)-------->|  Encryption    |<--(RSA)------->|  Encryption    |
-   |  (Client Side) |                 |  (Server Side) |                |  (Server Side) |
-   |                |                 |                |                |                |
-   +----------------+                 +----------------+                +----------------+
+          +----------------+                 +----------------+                +----------------+
+          |                |                 |                |                |                |
+          |  Client A      |<--(Socket)----->|   Server 1     |<--(WebSocket)->|   Server 2     |
+          |  (PySimpleGUI) |                 |  (Threading)   |                |  (Threading)   |
+          |                |                 |                |                |                |
+          +----------------+                 +----------------+                +----------------+
+                 |                                 |                                 |
+                 |                                 |                                 |
+                 |                                 |                                 |
+                 |                                 |                                 |
+          +----------------+                 +----------------+                +----------------+
+          |                |                 |                |                |                |
+          |  Client B      |<--(Socket)----->|   Message      |<--(WebSocket)->|   Message      |
+          |  (PySimpleGUI) |                 |   Handler      |                |   Handler      |
+          |                |                 |                |                |                |
+          +----------------+                 +----------------+                +----------------+
+                 |                                 |                                 |
+                 |                                 |                                 |
+                 |                                 |                                 |
+                 |                                 |                                 |
+          +----------------+                 +----------------+                +----------------+
+          |                |                 |                |                |                |
+          |  Encryption    |<--(RSA)-------->|  Encryption    |<--(RSA)------->|  Encryption    |
+          |  (Client Side) |                 |  (Server Side) |                |  (Server Side) |
+          |                |                 |                |                |                |
+          +----------------+                 +----------------+                +----------------+
 
 ## Authors
 - Hamad Ali Faizer 
