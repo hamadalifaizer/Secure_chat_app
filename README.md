@@ -139,7 +139,7 @@ A star topology will be implemented for intra-server communication. Each client 
 ### Concept of the Backdoor
 
 1. **Broken Access on Login**
-![Proof of concept](https://github.com/hamadalifaizer/Secure_chat_app/issues/3#issue-2448954581)
+https://github.com/user-attachments/assets/42381310-85e8-4e83-922f-fea242930364
 
 The video demonstrate how to get an access to the server without needing to input username / password.
 
