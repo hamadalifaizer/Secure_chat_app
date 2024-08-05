@@ -84,8 +84,8 @@ A star topology will be implemented for intra-server communication. Each client 
       To register an admin account run `registeraccount.py` and insert the username and password to add an accout
 
       ***Registering Account Example :***
-      https://github.com/hamadalifaizer/Secure_chat_app/issues/2#issue-2448952906
-    
+https://github.com/hamadalifaizer/Secure_chat_app/issues/2#issuecomment-2269457220    
+
       - `server_name`: The name of your server.
       - `admin`: A dictionary mapping usernames to their respective passwords.
       - `mailing_address`: Addresses of other servers for inter-server communication.
@@ -139,6 +139,7 @@ A star topology will be implemented for intra-server communication. Each client 
 ### Concept of the Backdoor
 
 1. **Broken Access on Login**
+
 https://github.com/user-attachments/assets/42381310-85e8-4e83-922f-fea242930364
 
 The video demonstrate how to get an access to the server without needing to input username / password.
@@ -210,7 +211,7 @@ The picture shows that upon login client to the server the password trasmitted i
         Uses psutil to manage and terminate processes.
 
 ### Setup clean version Demo
-![Running the server and client](GitResource/Running%20the%20server%20and%20client.mp4)
+https://github.com/user-attachments/assets/d109c655-50ed-4e2c-a64a-0d39fa4a3dfd
 
 ### Setup backdoor version Demo
 https://github.com/user-attachments/assets/3e9d7ec7-c10e-4362-aaed-964e0c9b003c
