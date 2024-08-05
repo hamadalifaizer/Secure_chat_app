@@ -34,7 +34,6 @@ def main():
         time.sleep(5)  # Check every 5 seconds
 
     print("Server has crashed multiple times. Exiting.")
-    # Optionally: send an alert or take additional actions here
-
+    
 if __name__ == '__main__':
     main()

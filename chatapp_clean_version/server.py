@@ -4,8 +4,10 @@ import json
 import socket
 import threading
 import os
-
-    
+from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.primitives.asymmetric import padding, rsa
+from cryptography.hazmat.primitives import serialization
+import base64
     
 def load_config():
     file_path = os.path.join(os.getcwd(), 'setup.json')
@@ -29,7 +31,7 @@ connected_servers = {}
 presence_list = []
 server_check = {}
 adress_book = {}
-
+keys={}
 
 def mailingip():
     ppp=[]
@@ -86,30 +88,40 @@ def check_admin(username, password):
 def handle_client(client_socket, client_address):
     try:
         initial_message = client_socket.recv(4096).decode('utf-8')
-        credentials = json.loads(initial_message)
-        username = credentials.get("username")
-        password = credentials.get("password")
+        if initial_message == 'reqpub':
+            response = json.dumps({
+                'tag': 'server_pubkey',
+                'pubkey': keys["publickey"]
+            })
+            client_socket.sendall(response.encode('utf-8'))
+            login_response = client_socket.recv(4096).decode('utf-8')
+            credentials = json.loads(login_response)
+            username = credentials.get("username")
+            encrypted_password = credentials.get("password")
+            password = decrypt_password(encrypted_password)
+            if not check_admin(username, password):
+                print(f"Error: Invalid admin credentials : {username, password}")
+                client_socket.sendall(b"Error: Invalid admin credentials")
+                client_socket.close()
+                return
 
-        if not check_admin(username, password):
-            print(f"Error: Invalid admin credentials : {username, password}")
-            client_socket.sendall(b"Error: Invalid admin credentials")
-            client_socket.close()
+            if username in connected_clients:
+                print(f"Error: Admin already connected : {username} is already connected")
+                client_socket.sendall(b"Error: Admin already connected")
+                client_socket.close()
+                return
+
+            print(f"Succesfull Admin Authentication : Admin connection established from : {client_address}")
+            connected_clients[username] = client_socket
+            clients_pubkey[username] = credentials.get("pubkey")
+
+            client_socket.sendall(b"Authenticated successfully")
+            asyncio.run(broadcast(tag='presence'))
+            print(f"Broadcasting New Presence to All Server : Client Connection Established from : {username}")
+            asyncio.run(broadcast(tag='attendance'))
+
+        else:
             return
-
-        if username in connected_clients:
-            print(f"Error: Admin already connected : {username} is already connected")
-            client_socket.sendall(b"Error: Admin already connected")
-            client_socket.close()
-            return
-
-        print(f"Succesfull Admin Authentication : Admin connection established from : {client_address}")
-        connected_clients[username] = client_socket
-        clients_pubkey[username] = credentials.get("pubkey")
-
-        client_socket.sendall(b"Authenticated successfully")
-        asyncio.run(broadcast(tag='presence'))
-        print(f"Broadcasting New Presence to All Server : Client Connection Established from : {username}")
-        asyncio.run(broadcast(tag='attendance'))
 
         while True:
             message = client_socket.recv(4096).decode('utf-8')
@@ -320,7 +332,7 @@ async def check_alive_server():
 def socket_server():
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server_socket.bind((SERVER_IP, 5001))
-    server_socket.listen(5)
+    server_socket.listen(2)
     print(f"Socket server running on {SERVER_IP}:5001")
 
     while True:
@@ -367,7 +379,30 @@ async def main():
     except Exception as e:
         print(f"Main Failure : {e}")
 
+def server_key():
+        priv_key = rsa.generate_private_key(public_exponent=65537, key_size=2048)
+        pub_key = priv_key.public_key()
+        keys["publickey"] = pub_key.public_bytes(
+            encoding=serialization.Encoding.PEM,
+            format=serialization.PublicFormat.SubjectPublicKeyInfo
+        ).decode('utf-8')
+        keys["privkey"] = priv_key
+
+def decrypt_password(password):
+    try:
+        ciphertext = base64.b64decode(password.encode('utf-8'))
+        private_key = keys["privkey"]
+        decrypted_message = private_key.decrypt(
+            ciphertext,
+            padding.OAEP(mgf=padding.MGF1(algorithm=hashes.SHA1()), algorithm=hashes.SHA256(), label=None)
+        )
+        return decrypted_message.decode()
+    except Exception as e:
+        print(f"Error decrypting message: {e}")
+        return 'System Message: Failed to decrypt'
+
 print(f"WebSocket server is running on ws://{SERVER_IP}:5555")
+server_key()
 socket_thread = threading.Thread(target=socket_server)
 socket_thread.start()
 asyncio.run(main())
