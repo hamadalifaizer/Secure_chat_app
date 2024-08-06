@@ -34,12 +34,13 @@ class ChatClient:
         self.online_users = []
         self.online_users_keys = {}
         self.keys = {}
+        self.server_keys={}
         self.stop_event = threading.Event()
 
         self.window = None
         self.login_window = None
         self.receive_thread = None
-
+        
         self.connect_to_server()  # Establish server connection first
         self.generate_keys()      # Generate keys before login
         self.create_login_window()
@@ -76,7 +77,8 @@ class ChatClient:
     def authenticate(self):
         if self.username and self.password:
             self.hashed_password = self.hash_password()
-            credentials = json.dumps({"username": self.username, "password": self.hashed_password, 'pubkey': self.keys.get("publickey")})
+            self.encrypted_password=self.encrypt_password(self.hashed_password)
+            credentials = json.dumps({"username": self.username, "password": self.encrypted_password, 'pubkey': self.keys.get("publickey")})
             if not self.keys.get("publickey"):
                 sg.popup_error("Key Error", "Public key is missing. Please restart the application.")
                 self.on_closing()
@@ -164,6 +166,15 @@ class ChatClient:
             self.login_window.close()
         sys.exit()
 
+    def encrypt_password(self, password):
+        pubkey = serialization.load_pem_public_key(self.server_keys['pubkey'].encode('utf-8'))
+        ciphertext = pubkey.encrypt(
+            password.encode(),
+            padding.OAEP(mgf=padding.MGF1(algorithm=hashes.SHA1()), algorithm=hashes.SHA256(), label=None)
+        )
+        encoded_ciphertext = base64.b64encode(ciphertext).decode('utf-8')
+        return encoded_ciphertext
+    
     def encrypt_message(self, message, target):
         print(f"Encrypt_message: Encrypting {message} with {target} PubKey")
         public_key = self.online_users_keys[target]
@@ -172,7 +183,6 @@ class ChatClient:
             padding.OAEP(mgf=padding.MGF1(algorithm=hashes.SHA1()), algorithm=hashes.SHA256(), label=None)
         )
         encoded_ciphertext = base64.b64encode(ciphertext).decode('utf-8')
-        print(encoded_ciphertext)
         return encoded_ciphertext
 
     def decrypt_message(self, encoded_ciphertext):
@@ -213,6 +223,14 @@ class ChatClient:
         try:
             self.client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             self.client_socket.connect((SERVER_IP, SERVER_PORT))
+            self.client_socket.sendall("reqpub".encode('utf-8'))
+            response_data = self.client_socket.recv(4096).decode('utf-8')
+            response = json.loads(response_data)
+            if response['tag'] == 'server_pubkey':
+                self.server_keys['pubkey'] = response['pubkey']
+                print(f"Received Server Public Key")
+            else:
+                print("Unexpected response from server.")
         except Exception as e:
             sg.popup_error("Connection Error", f"Could not connect to server: {e}")
             sys.exit()
