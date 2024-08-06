@@ -3,10 +3,43 @@
 ## THIS CHAT APP CONTAINS BACKDOORS
 
 ## Description
-A secure chat system utilizing a standardized protocol (WebSockets). This application ensures secure and private communication between users with features like public and private messaging, user authentication, and message encryption. The architecture of the Chat App is designed to ensure secure, real-time communication between multiple clients and servers. The design includes layers for user interface, communication, encryption, and configuration management. The application uses python gui making it easier to use.
+A secure chat system utilizing a standardized protocol (WebSockets) for its inter-server connection and sockets for its intra-server connection. This application ensures secure and private communication between users with features like public and private messaging, user authentication, and message encryption. The architecture of the Chat App is designed to ensure secure, real-time communication between multiple clients and servers. The design includes layers for user interface, communication, encryption, and configuration management. The application uses python gui making it easier to use.
+
+## Protocol Description
+| OSI Layer         |                                                 |   |   |   |
+|-------------------|-------------------------------------------------|---|---|---|
+| Application Layer | Python (PysimpleGUI)                            |   |   |   |
+| Presentation      | JSON                                            |   |   |   |
+| Session Layer     | Websocket (Inter-server), Socket (Intra-Server) |   |   |   |
+| Transport Layer   | TCP                                             |   |   |   |
+| Network Layer     | IP                                              |   |   |   |
+| Data Link Layer   | LAN                                             |   |   |   |
+
+
+![alt text](GitResource/image.png)
+
+### Inter-server communication:
+The WebSocket protocol will be used for inter-server communication. JSON will be the format for information exchange between servers, and communication will establish through port 5555. The server will be assigned a static IP address, which will be shared among other servers. Additionally, the IP addresses of other servers will be stored on our server. JID will be used to differentiate the clients (user@domain). The server will send an "attendance message" at startup. If a new client connects to the server, the server will send a "presence message" to other servers to update the active user list. The server will receive encrypted messages and public keys from clients and forward them to the respective server or client.
+
+Topology between server:
+
+![alt text](GitResource/image-1.png)
+
+The server was setup with static IP. Each server is connected to every other server with preconfigured IP.
+
+JID will be used to differentiate the clients
+ 
+
+### Intra-server communication:
+Sockets will be used for communication between clients and the server within the intra network.
+Star Topology :
+
+![alt text](GitResource/image-2.png)
+ 
+A star topology will be implemented for intra-server communication. Each client must establish a connection with the server to communicate with another client within the intra-network. Server will open client connection through port 5001 where client will be set to connect to the server through that port.
 
 # There are two versions of this application one with a backdoor and one without. 
-
+# Note this app only run on windows
 ## Features
 - **Public and Private Messaging:** Users can send messages to the public chat or privately to specific users.
 - **User Authentication:** Only authenticated users can connect and communicate.
@@ -31,7 +64,7 @@ A secure chat system utilizing a standardized protocol (WebSockets). This applic
 
 3. **Configuration:**
     - **Server Setup:**
-      Edit the `setup.json` file to include your server name, admin credentials, and mailing addresses. This file is used by the server to manage connections and communications. 
+      Edit the `setup.json` file to include your server name and mailing addresses. This file is used by the server to manage connections and communications. 
       ```json
       {
           "server_name": "s3",
@@ -48,6 +81,11 @@ A secure chat system utilizing a standardized protocol (WebSockets). This applic
           }
       }
       ```
+      To register an admin account run `registeraccount.py` and insert the username and password to add an accout
+
+      ***Registering Account Example :***
+https://github.com/hamadalifaizer/Secure_chat_app/issues/2#issuecomment-2269457220    
+
       - `server_name`: The name of your server.
       - `admin`: A dictionary mapping usernames to their respective passwords.
       - `mailing_address`: Addresses of other servers for inter-server communication.
@@ -61,10 +99,8 @@ A secure chat system utilizing a standardized protocol (WebSockets). This applic
       ```
       - `server_ip`: The IP address of the server to which the client should connect.
 
-4. **Run the Server:**
-    ```bash
-    python server.py
-    ```
+4. **Run the Server :**
+    Follow the usage instruction to run from the preffered version (clean/backdoor)
 
 5. **Run the Client:**
     ```bash
@@ -75,7 +111,7 @@ A secure chat system utilizing a standardized protocol (WebSockets). This applic
 ## For clean version 
 1. **Start the Server:**
    - Ensure the setup.json is configured correctly by putting your correct ip on the "server_ip" variable.
-   - run the watchdog.py to start the server.
+   - run the `server_run.py` to start the server with the watchdog, or `server.py` withouth watchdog. 
     
 2. **Start the Client:**
     - Ensure 'client_setup.json' has your ip. 
@@ -99,6 +135,19 @@ A secure chat system utilizing a standardized protocol (WebSockets). This applic
 
 4. **Private Chat:**
     - Select a user from the list to start a private chat.
+
+### Concept of the Backdoor
+
+1. **Broken Access on Login**
+
+https://github.com/user-attachments/assets/42381310-85e8-4e83-922f-fea242930364
+
+The video demonstrate how to get an access to the server without needing to input username / password.
+
+2. **Insecure Authentication Transmission**
+![alt text](GitResource/Proof%20of%20concept%20insecure%20auth.png)
+
+The picture shows that upon login client to the server the password trasmitted is not secure and can be read by anyone.
 
 ### Design choices
 ## Network Protocols:
@@ -140,6 +189,9 @@ A secure chat system utilizing a standardized protocol (WebSockets). This applic
 ## User Authentication:
         Simple Registration and Login: The application supports user registration and login, storing credentials securely. This feature ensures that only authorized users can access the chat, enhancing security.
 
+## User Registration:
+        Provide secure account registration on server side after registering will be stored encrypted
+
 ## Presence and Status:
         Online Status: The application maintains a list of online users and their statuses. This feature allows users to see who is available for chat, improving the user experience.
 
@@ -153,13 +205,13 @@ A secure chat system utilizing a standardized protocol (WebSockets). This applic
         Modular Design: The modular design of the codebase makes it easy to extend the application with new features, such as additional encryption methods or new UI components, without affecting the existing functionality.
 
 ## Watchdog Script:
-
-    Server Monitoring (watchdog.py):
+    Server Monitoring (contain in server_run.py):
         Monitors the server process and restarts it if it crashes.
         Limits the number of restarts to prevent continuous crashing loops.
         Uses psutil to manage and terminate processes.
+
 ### Setup clean version Demo
-https://github.com/user-attachments/assets/b64edf9c-102d-4a14-8434-0f66be115ac7
+https://github.com/user-attachments/assets/d109c655-50ed-4e2c-a64a-0d39fa4a3dfd
 
 ### Setup backdoor version Demo
 https://github.com/user-attachments/assets/3e9d7ec7-c10e-4362-aaed-964e0c9b003c

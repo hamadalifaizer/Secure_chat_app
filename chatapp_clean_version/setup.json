@@ -5,7 +5,10 @@
         "client1@server3": "25f43b1486ad95a1398e3eeb3d83bc4010015fcc9bedb35b432e00298d5021f7",
         "client2@server3": "1c142b2d01aa34e9a36bde480645a57fd69e14155dacfab5a3f9257b77fdc8d8",
         "client3@server3": "4fc2b5673a201ad9b1fc03dcb346e1baad44351daa0503d5534b4dfdcc4332e0",
-        "client4@server3": "110198831a426807bccd9dbdf54b6dcb5298bc5d31ac49069e0ba3d210d970ae"
+        "client4@server3": "110198831a426807bccd9dbdf54b6dcb5298bc5d31ac49069e0ba3d210d970ae",
+        "tes1@server3": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+        "Reg1@server3": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+        "reg2@server3": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3"
     },
     "mailing_address": {
         "server8": "10.13.97.12:5555",

@@ -45,7 +45,11 @@ def main():
             print("Invalid Username: please only include A-Z, a-z, 0-9")
             continue
 
+<<<<<<< HEAD
         if  len(username)<=1:
+=======
+        if  len(username)<=1 or len(username) >= 8:
+>>>>>>> 54f277f5c7c14cc806deebd7cc8d7976b5b2312c
             print("Invalid Username: Length must be more than 1")
             continue
 
